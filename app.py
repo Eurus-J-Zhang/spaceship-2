@@ -9,8 +9,8 @@ pymysql.install_as_MySQLdb()
 
 def create_app():
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('JAWSDB_URL')   
-    # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+    # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('JAWSDB_URL')   
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
     app.config['SECRET_KEY'] = "iloveeurus"
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -68,7 +68,7 @@ def appraisal():
         data = Data(**combined_data)
         db.session.add(data)
         db.session.commit()
-        return redirect(url_for("end")) 
+        return redirect(url_for("ending")) 
     return render_template('appraisal.html',form=form)
 
 # P1
@@ -124,9 +124,9 @@ def result():
     return render_template('result.html')
 
 # end page
-@app.route('/end')
-def end():
-    return render_template('end.html')
+@app.route('/ending')
+def ending():
+    return render_template('ending.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
